@@ -44,9 +44,7 @@ if (all(high(:) == 0))
     return
 end
 
-labels = unique(high);
-assert(labels(1) == 0)
-labels = labels(2:end);
+labels = nonzeros(unique(high));
 
 for i=1:length(labels)
     indexes = high == labels(i);
