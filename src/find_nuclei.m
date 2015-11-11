@@ -10,7 +10,7 @@ i_p.addParamValue('terraced_thresh_debug',0,@(x)x == 1 || x == 0);
 
 i_p.addParamValue('min_nuclei_size',500,@(x)x == 1 || x == 0);
 i_p.addParamValue('max_nuclei_size',20000,@(x)x == 1 || x == 0);
-i_p.addParamValue('min_nuclei_intensity',1000,@(x)x == 1 || x == 0);
+i_p.addParamValue('min_nuclei_intensity',0,@(x)x == 1 || x == 0);
 
 i_p.parse(exp_dir,varargin{:});
 
@@ -24,11 +24,11 @@ start_nuc = tic;
 vinc_files = dir(fullfile(exp_dir,'Vinculin'));
 vinc_files = vinc_files(3:end);
 
-mkdir(fullfile(exp_dir,'labeled_nuclei'));
-mkdir(fullfile(exp_dir,'terraced_thresh_nuclei'));
+mkdir_no_err(fullfile(exp_dir,'labeled_nuclei'));
+mkdir_no_err(fullfile(exp_dir,'terraced_thresh_nuclei'));
 
 if (terraced_thresh_debug)
-    mkdir(fullfile(exp_dir,'terraced_thresh_stages'));
+    mkdir_no_err(fullfile(exp_dir,'terraced_thresh_stages'));
 end
 
 for i = 1:length(vinc_files)
